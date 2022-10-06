@@ -23,9 +23,11 @@ import { TakeUntilLessonComponent } from './take-until-lesson/take-until-lesson.
 import { DistinctUntilChangedLessonComponent } from './distinct-until-changed-lesson/distinct-until-changed-lesson.component';
 import { MergeAllLessonComponent } from './merge-all-lesson/merge-all-lesson.component';
 import { MergeMapLessonComponent } from './merge-map-lesson/merge-map-lesson.component';
+import { SubjectLessonComponent } from './subject-lesson/subject-lesson.component';
+
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/mergeMap', pathMatch: 'full' },
+  { path: '', redirectTo: '/subjectlesson', pathMatch: 'full' },
   { path: 'observable', component: ObservableComponent },
   { path: 'subject', component: SubjectComponent },
   { path: 'useApi', component: UseRxjsApiComponent },
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'distictUntilChanged', component: DistinctUntilChangedLessonComponent },
   { path: 'mergeAll', component: MergeAllLessonComponent },
   { path: 'mergeMap', component: MergeMapLessonComponent },
+  { path: 'subjectlesson', component: SubjectLessonComponent },
 ];
 
 @NgModule({
@@ -70,7 +73,8 @@ const appRoutes: Routes = [
     TakeUntilLessonComponent,
     DistinctUntilChangedLessonComponent,
     MergeAllLessonComponent,
-    MergeMapLessonComponent
+    MergeMapLessonComponent,
+    SubjectLessonComponent
   ],
   imports: [
     BrowserModule,
