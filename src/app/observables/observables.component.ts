@@ -36,4 +36,67 @@ export class ObservablesComponent implements OnInit {
     });
     console.log('just after subscribe');
   }
+
+  private observable2(): void {
+    const observer = {
+      next: (value: any) => console.log('next', value),
+      error: (error: any) => console.log('error', error),
+      complete: () => console.log('complete'),
+    }
+
+    const observable = new Observable(subscriber => {
+      subscriber.next('hello');
+      subscriber.next('world');
+      subscriber.complete();
+      subscriber.next('ignore');
+    });
+
+    observable.subscribe(observer);
+  }
+
+
+  private observable3(): void {
+    const observer = {
+      next: (value: any) => console.log('next', value),
+      error: (error: any) => console.log('error', error),
+      complete: () => console.log('complete'),
+    }
+
+    const observable = new Observable(subscriber => {
+      let count = 1;
+
+      const id = setInterval(() => {
+        subscriber.next(count);
+        subscriber.complete();
+        count+=1;
+      }, 1000);
+
+      return () => {
+        console.log('called');
+        clearInterval(id);
+      }
+    });
+
+    observable.subscribe(observer);
+  }
+
+  private unSubscribe(): void {
+
+    const observable = new Observable((subscriber) => {
+      let count = 1;
+      setInterval(() => {
+        subscriber.next(count);
+        count+=1;
+      }, 1000);
+    });
+
+    const subscribtion = observable.subscribe(res => console.log(res));
+
+
+    setInterval(() => {
+      subscribtion.unsubscribe();
+    }, 5000)
+  }
+
+
 }
